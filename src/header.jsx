@@ -1,7 +1,7 @@
 const Header = () => {
   return (
-    <div className="py-2 px-3 bg-gradient-to-r from-[#672280] to-[#A626D3] flex justify-between">
-      <div className="flex">
+    <div className="py-2 px-3 bg-gradient-to-r from-[#672280] to-[#A626D3] flex justify-between text-white">
+      <div className="flex ">
         <img src="/assets/Troll Face.svg" alt="" />
         <h2>Meme Generator</h2>
       </div>
