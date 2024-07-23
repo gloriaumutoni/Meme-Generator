@@ -3,11 +3,20 @@ import Data from "./data"
 
 const MainPage = () => {
     const [url,setUrl]=useState("https://i.imgflip.com/30b1gx.jpg")
+    const [meme,setMeme]=useState({
+      topText:'',
+      bottomText:'',
+      memeImage:"https://i.imgflip.com/30b1gx.jpg"
+    })
     function handleClick(){
 const MemeData=Data.data.memes
 let randomUrl=Math.floor(Math.random()* MemeData.length)
-console.log(randomUrl)
-setUrl(()=>MemeData[randomUrl].url)
+setMeme((prev)=>{
+  return {
+    ...prev,
+    memeImage:MemeData[randomUrl].url
+  }
+})
     }
   return (
     <div>
@@ -37,7 +46,7 @@ setUrl(()=>MemeData[randomUrl].url)
         Get a new meme image 🖼
       </button>
       <div className="relative h-[268px] grid grid-cols-1 my-10">
-<img src={url} />
+<img src={meme.memeImage} />
       </div>
     </div>
   );
