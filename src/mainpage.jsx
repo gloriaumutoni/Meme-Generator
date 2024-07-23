@@ -1,11 +1,13 @@
+import { useState } from "react";
 import Data from "./data"
 
 const MainPage = () => {
-    let url
+    const [url,setUrl]=useState("https://i.imgflip.com/30b1gx.jpg")
     function handleClick(){
 const MemeData=Data.data.memes
-let randomUrl=Math.floor(Math.random * MemeData.length)
-url=MemeData[randomUrl].url
+let randomUrl=Math.floor(Math.random()* MemeData.length)
+console.log(randomUrl)
+setUrl(()=>MemeData[randomUrl].url)
     }
   return (
     <div>
@@ -34,8 +36,8 @@ url=MemeData[randomUrl].url
       <button onClick={handleClick} className="w-[477px] text-white py-2 rounded-md mt-5 bg-gradient-to-r from-[#672280] to-[#A626D3]">
         Get a new meme image 🖼
       </button>
-      <div className="bg-[url(url)] relative h-[268px] grid grid-cols-1 my-10">
-
+      <div className="relative h-[268px] grid grid-cols-1 my-10">
+<img src={url} />
       </div>
     </div>
   );
