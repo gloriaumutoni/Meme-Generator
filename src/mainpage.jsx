@@ -45,8 +45,8 @@ setMeme((prev)=>{
       <button onClick={handleClick} className="w-[477px] text-white py-2 rounded-md mt-5 bg-gradient-to-r from-[#672280] to-[#A626D3]">
         Get a new meme image 🖼
       </button>
-      <div className="relative h-[268px] grid grid-cols-1 my-10">
-<img src={meme.memeImage} />
+      <div className="relative grid grid-cols-1">
+<img className=" my-5" src={meme.memeImage} />
       </div>
     </div>
   );
