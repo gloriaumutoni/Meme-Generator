@@ -63,9 +63,9 @@ setMeme(prev=>{
         Get a new meme image 🖼
       </button>
       <div className="relative w-full">
-        <p className="absolute top-1 text-center w-full font-bold text-3xl">{meme.topText}</p>
+        <p className="absolute top-1 text-center w-full font-bold text-3xl text-white">{meme.topText}</p>
         <img className=" my-5 " src={meme.memeImage} />
-        <p className="absolute bottom-1 text-center w-full font-bold text-3xl">{meme.bottomText}</p>
+        <p className="absolute bottom-1 text-center w-full font-bold text-3xl text-white">{meme.bottomText}</p>
       </div>
     </div>
   );
