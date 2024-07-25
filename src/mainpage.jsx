@@ -1,32 +1,41 @@
-import { useState } from "react";
-import Data from "./data";
+import { useState, useEffect } from "react";
+// import Data from "./data";
 
 const MainPage = () => {
-  const [url, setUrl] = useState("https://i.imgflip.com/30b1gx.jpg");
+  // const [url, setUrl] = useState("https://i.imgflip.com/30b1gx.jpg");
+  const [fetchedMemes,setFetchedMemes]=useState([])
+
   const [meme, setMeme] = useState({
     topText: "",
     bottomText: "",
     memeImage: "https://i.imgflip.com/30b1gx.jpg",
   });
+
+  useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => setFetchedMemes(data.data.memes));
+  }, []);
   function handleClick() {
-    const MemeData = Data.data.memes;
-    let randomUrl = Math.floor(Math.random() * MemeData.length);
+    // const MemeData = meme;
+    let randomUrl = Math.floor(Math.random() * fetchedMemes.length);
     setMeme((prev) => {
       return {
         ...prev,
-        memeImage: MemeData[randomUrl].url,
+        memeImage: fetchedMemes[randomUrl].url,
       };
     });
   }
-  function handleChange(e){
-    e.preventDefault()
-const {name,value}=e.target
-setMeme(prev=>{
-  return({
-    ...prev,
-    [name]:value
-  })
-})
+
+  function handleChange(e) {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setMeme((prev) => {
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   }
   return (
     <div>
@@ -63,9 +72,13 @@ setMeme(prev=>{
         Get a new meme image 🖼
       </button>
       <div className="relative w-full">
-        <p className="absolute top-1 text-center w-full font-bold text-3xl text-white">{meme.topText}</p>
+        <p className="absolute top-1 text-center w-full font-bold text-3xl text-white">
+          {meme.topText}
+        </p>
         <img className=" my-5 " src={meme.memeImage} />
-        <p className="absolute bottom-1 text-center w-full font-bold text-3xl text-white">{meme.bottomText}</p>
+        <p className="absolute bottom-1 text-center w-full font-bold text-3xl text-white">
+          {meme.bottomText}
+        </p>
       </div>
     </div>
   );
